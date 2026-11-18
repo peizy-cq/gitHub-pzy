@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  // base: '/peizy-cq/',//实际仓库名
+  base: '/gitHub-pzy/',//实际仓库名
   title: "gitHub-pzy",
   description: "前端搬砖人✨",
   themeConfig: {
