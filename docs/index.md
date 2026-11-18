@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: 开始阅读
-      link: /posts/first-blog
+      link: /posts/javascript/closure
     - theme: alt
       text: GitHub
       link: https://github.com/peizy-cq/github-pzy

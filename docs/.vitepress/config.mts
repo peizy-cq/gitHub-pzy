@@ -15,13 +15,6 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'html', // 一级分类名
-        collapsed: false, // 是否默认折叠，false 为默认展开
-        items: [
-          { text: '语义化标签', link: '/posts/html/语义化标签' },
-        ]
-      },
-      {
         text: 'javascript',
         collapsed: false,
         items: [
