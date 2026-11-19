@@ -11,6 +11,7 @@ title: 生活回忆录
 <span>共 <span class="num">{{ list.length }}</span> 条记录</span>
 <span v-if="yearRange">{{ yearRange }}</span>
 <span>最近一条 {{ latestText }}</span>
+<span v-if="!isDev">线上只读</span>
 </div>
 </div>
 </header>
@@ -20,7 +21,7 @@ title: 生活回忆录
 <div class="timeline" v-html="timelineHTML" @click="onTimelineClick"></div>
 </section>
 
-<aside class="composer-wrap">
+<aside class="composer-wrap" v-if="isDev">
 <div class="composer">
 <h2>写一条</h2>
 <p class="hint">记录写进 posts/memoir/memory.json，照片存到 public/memoir-images。</p>
@@ -566,6 +567,11 @@ title: 生活回忆录
 <script setup>
 import { computed, onMounted, onUnmounted, reactive, ref } from 'vue'
 import { withBase } from 'vitepress'
+import seed from './memory.json'
+
+// 构建时把 memory.json 打包进页面：线上静态站直接有数据、不发请求；
+// 本地 npm run docs:dev 才有读写接口，可以新增。
+const isDev = import.meta.env.DEV
 
 const API = withBase('/api/memoir/')
 const IMG = withBase('/memoir-images/')
@@ -573,7 +579,7 @@ const MAX_IMAGE = 10 * 1024 * 1024
 const ALLOWED = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
 const WEEK = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
 
-const list = ref([])
+const list = ref(Array.isArray(seed) ? seed.slice() : [])
 const form = reactive({ date: todayStr(), title: '', desc: '' })
 const pending = ref(null)
 const busy = ref(false)
@@ -773,7 +779,8 @@ function onKeydown(e) {
 }
 
 onMounted(() => {
-  load()
+  // 线上是静态站，没有写接口，直接用打包进来的数据，不请求 /api
+  if (isDev) load()
   document.addEventListener('keydown', onKeydown)
 })
 
