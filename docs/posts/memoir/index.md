@@ -68,13 +68,17 @@ title: 生活回忆录
 
 <style>
 #memoir {
-  --paper: #fbfaf6;
-  --paper-2: #f2efe6;
-  --ink: #1e2224;
-  --ink-soft: #5c646a;
-  --ink-body: #373d42;
-  --rule: #dbd7ca;
+  /* 底色、文字、分隔线都取 VitePress 主题变量，亮色/暗色自动跟随 */
+  --paper: var(--vp-c-bg);
+  --paper-2: var(--vp-c-bg-alt);
+  --surface: var(--vp-c-bg-soft, var(--vp-c-bg-alt));
+  --ink: var(--vp-c-text-1);
+  --ink-soft: var(--vp-c-text-2);
+  --ink-body: var(--vp-c-text-1);
+  --rule: var(--vp-c-divider);
   --accent: #2f6f63;
+  --accent-strong: #275d53;
+  --on-accent: #ffffff;
   --danger: #a8463c;
   --datew: 84px;
   --axlew: 26px;
@@ -84,6 +88,14 @@ title: 生活回忆录
   font-size: 15px;
   line-height: 1.7;
   padding-bottom: 40px;
+}
+
+/* 暗色主题下的强调色，避免深绿压在深底上糊成一片 */
+html.dark #memoir {
+  --accent: #63b8a1;
+  --accent-strong: #7bcbb5;
+  --on-accent: #0a1412;
+  --danger: #e0908a;
 }
 
 #memoir h1,
@@ -211,7 +223,7 @@ title: 生活回忆录
   padding: 10px 12px;
   border: 1px solid var(--rule);
   border-radius: 3px;
-  background: #fff;
+  background: var(--surface);
   color: var(--ink);
   font: inherit;
   font-size: 16px;
@@ -221,7 +233,7 @@ title: 生活回忆录
 
 #memoir input[type="text"]::placeholder,
 #memoir textarea::placeholder {
-  color: #a8ada8;
+  color: var(--vp-c-text-3, #a8ada8);
 }
 
 #memoir input[type="date"]:focus,
@@ -241,7 +253,7 @@ title: 生活回忆录
   padding: 22px 14px;
   border: 1px dashed var(--rule);
   border-radius: 3px;
-  background: #fff;
+  background: var(--surface);
   text-align: center;
   cursor: pointer;
   transition: border-color .15s ease, background .15s ease;
@@ -325,7 +337,7 @@ title: 生活回忆录
   border: 0;
   border-radius: 3px;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   font: inherit;
   font-size: 16px;
   font-weight: 500;
@@ -334,11 +346,12 @@ title: 生活回忆录
 }
 
 #memoir .btn-save:hover {
-  background: #275d53;
+  background: var(--accent-strong);
 }
 
 #memoir .btn-save:disabled {
-  background: #7f9d95;
+  background: var(--accent);
+  opacity: .6;
   cursor: progress;
 }
 
@@ -429,7 +442,7 @@ title: 生活回忆录
   padding: 16px 18px;
   border: 1px solid var(--rule);
   border-radius: 3px;
-  background: #fff;
+  background: var(--surface);
 }
 
 #memoir .card-head {
@@ -486,7 +499,7 @@ title: 生活回忆录
   padding: 46px 22px;
   border: 1px dashed var(--rule);
   border-radius: 3px;
-  background: #fff;
+  background: var(--surface);
   text-align: center;
   color: var(--ink-soft);
   font-size: 14px;
@@ -500,8 +513,8 @@ title: 生活回忆录
   max-width: calc(100% - 32px);
   padding: 10px 16px;
   border-radius: 4px;
-  background: var(--ink);
-  color: #fff;
+  background: var(--vp-c-text-1);
+  color: var(--vp-c-bg);
   font-size: 14px;
   opacity: 0;
   pointer-events: none;
