@@ -17,7 +17,7 @@ hero:
       link: https://github.com/peizy-cq/github-pzy
     - theme: sponsor
       text: 我的作品
-      link: /demo
+      link: /posts/memoir/
 
 features:
   - title: "⚡ 极速体验"
@@ -87,7 +87,7 @@ features:
 
 /* 自定义页面的容器 */
 .cyber-container {
-  max-width: 1152px;
+  max-width: 100%;
   margin: 40px auto;
   padding: 0 24px;
 }
@@ -99,15 +99,15 @@ features:
   font-size: 1.2rem;
   color: #42d392;
   text-shadow: 0 0 10px #42d392, 0 0 20px #42d392;
-  letter-spacing: 2px;
+  letter-spacing: 2px;/*文字间距*/
   margin-bottom: 40px;
-  animation: pulse 2s infinite;
+  animation: pulse 2s infinite;/*明暗交替*/
 }
 
 /* 卡片网格布局 */
 .grid-demo {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));/*自动创建尽可能多的列，每列最小 250px，最大平分剩余空间。*/
   gap: 20px;
   margin-bottom: 60px;
 }
@@ -119,7 +119,7 @@ features:
   border-radius: 12px;
   padding: 24px;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease;/*当任何可过渡属性发生变化时，用 0.3 秒、以 ease 缓动曲线平滑过渡。*/
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -163,7 +163,7 @@ features:
   font-family: monospace;
   color: #42d392;
   white-space: nowrap;
-  animation: scroll 20s linear infinite;
+  animation: scroll 20s linear infinite;/* 应用名为 scroll 的动画，持续 20 秒，匀速播放，无限循环。 */
 }
 
 /* 动画定义 */
